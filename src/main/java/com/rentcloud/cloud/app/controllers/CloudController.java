@@ -1,4 +1,3 @@
-
 package com.rentcloud.cloud.app.controllers;
 
 import com.rentcloud.cloud.app.entities.Cloud;
@@ -24,58 +23,64 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("Cloud")
 public class CloudController {
+
     @Autowired
     private CloudService service;
-    
+
     /**
      * GET
-     * @return 
+     *
+     * @return
      */
     @GetMapping("/all")
-    public List<Cloud> getCloud(){
+    public List<Cloud> getCloud() {
         return service.getall();
     }
-    
+
     /**
      * GET(id)
+     *
      * @param cloudId
-     * @return 
+     * @return
      */
     @GetMapping("/{id}")
-    public Optional<Cloud> getCloud(@PathVariable("id") int cloudId){
+    public Optional<Cloud> getCloud(@PathVariable("id") int cloudId) {
         return service.getCloud(cloudId);
     }
-    
+
     /**
      * POST
+     *
      * @param cloud
-     * @return 
+     * @return
      */
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public Cloud save(@RequestBody Cloud cloud){
+    public Cloud save(@RequestBody Cloud cloud) {
         return service.save(cloud);
     }
-    
+
     /**
      * PUT
+     *
      * @param cloud
-     * @return 
+     * @return
      */
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.CREATED)
-    public Cloud update(@RequestBody Cloud cloud){
+    public Cloud update(@RequestBody Cloud cloud) {
         return service.update(cloud);
     }
-    
-      /**
+
+    /**
      * DELETE
+     *
      * @param cloud
-     * @return 
+     * @return
      */
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int cloudId){
+    public boolean delete(@PathVariable("id") int cloudId) {
         return service.delete(cloudId);
     }
 }
