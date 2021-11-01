@@ -2,6 +2,8 @@
 package com.rentcloud.cloud.app.controllers;
 
 import com.rentcloud.cloud.app.entities.Reservation;
+import com.rentcloud.cloud.app.entities.custom.CountClient;
+import com.rentcloud.cloud.app.entities.custom.StatusAmount;
 import com.rentcloud.cloud.app.services.ReservationService;
 import java.util.List;
 import java.util.Optional;
@@ -80,4 +82,28 @@ public class RenservationController {
     public boolean delete(@PathVariable("id") int reservationId){
         return service.delete(reservationId);
     }
+    
+    /**
+     * GET By STATUS
+     * @return 
+     */
+    @GetMapping("/report-status")
+    public StatusAmount getReservationsByStatus(){
+        return service.getStatusReport();
+    }
+    
+    /**
+     * GET TOP CLIENT
+     * @return 
+     */
+    @GetMapping("/report-clients")
+    public List<CountClient> getCountClient(){
+        return service.getTopClients();
+    }
+    
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+    public List<Reservation> getDatesReport(@PathVariable("dateOne")String d1,@PathVariable("dateTwo")String d2){
+        return service.getPapeletiaPeriod(d1, d2);
+    }
+    
 }
