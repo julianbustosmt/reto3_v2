@@ -15,10 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- *
+ *Reservation representa el alquiler de la nube en un periodo de tiempo determinado
  * @author Julian Bustos
  */
-
 @Service
 public class ReservationService {
     @Autowired
@@ -98,11 +97,19 @@ public class ReservationService {
         }).orElse(false);
         return respuesta;
     }
-        
+     
+    /**
+     * Metodo que retorna una lista de objetos tipo Client ordenados de forma desendente con respecto a numero de reservaciones asociadas a dicho objeto 
+     * @return 
+     */
     public List<CountClient> getTopClients(){
         return repository.getTopClients();
     }
     
+    /**
+     * Metodo que contabiliza el numero de reservaciones segun si su estatus es cancelled o completed
+     * @return 
+     */
     public StatusAmount getStatusReport(){
         List<Reservation> completed = repository.getReservationsByStatus("completed");
         List<Reservation> cancelled = repository.getReservationsByStatus("cancelled");
@@ -111,6 +118,12 @@ public class ReservationService {
         return stAmt;
     }
     
+    /**
+     * Metodo que nos permite saber cuántas reservas se han hecho en un intervalo de tiempo
+     * @param d1
+     * @param d2
+     * @return 
+     */
     public List<Reservation> getPapeletiaPeriod(String d1, String d2){
         
         SimpleDateFormat parser = new SimpleDateFormat("yyy-MM-dd");
