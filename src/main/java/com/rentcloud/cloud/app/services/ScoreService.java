@@ -69,6 +69,9 @@ public class ScoreService {
                 if(score.getStars()!=null){
                     existScore.get().setStars(score.getStars());
                 }
+                if(score.getReservation()!=null){
+                    existScore.get().setReservation(score.getReservation());
+                }
                 return repository.save(existScore.get());
             }else {
                 return score;

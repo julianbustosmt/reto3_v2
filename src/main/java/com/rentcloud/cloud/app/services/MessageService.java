@@ -68,6 +68,12 @@ public class MessageService {
                 if (message.getMessageText() != null) {
                     existMessage.get().setMessageText(message.getMessageText());
                 }
+                if (message.getCloud()!= null) {
+                    existMessage.get().setCloud(message.getCloud());
+                }
+                 if (message.getClient()!= null) {
+                    existMessage.get().setClient(message.getClient());
+                }
                 return repository.save(existMessage.get());
             } else {
                 return message;
